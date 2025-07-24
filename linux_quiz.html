@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Linux Command Line Basics Quiz</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f4; }
+        .quiz-container { background: white; padding: 20px; border-radius: 8px; max-width: 600px; margin: auto; }
+        .question { font-size: 18px; margin-bottom: 10px; }
+        .options { list-style-type: none; padding: 0; }
+        .options li { margin-bottom: 8px; }
+        button { padding: 10px 20px; font-size: 16px; margin-top: 20px; }
+        .result { font-size: 20px; font-weight: bold; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <div id="quiz">
+            <div class="question" id="question"></div>
+            <ul class="options" id="options"></ul>
+            <button onclick="nextQuestion()">Next</button>
+            <div class="result" id="result"></div>
+        </div>
+    </div>
+
+    <script>
+        const quizData = [
+            {
+                question: "Which command is used to list files and directories in Linux?",
+                options: ["pwd", "ls", "cd", "mv"],
+                answer: "ls"
+            },
+            {
+                question: "What does the cd command do?",
+                options: ["Creates a new directory", "Deletes a file", "Changes the current directory", "Lists all files"],
+                answer: "Changes the current directory"
+            },
+            {
+                question: "How do you display the current working directory?",
+                options: ["dir", "whereami", "pwd", "ls -d"],
+                answer: "pwd"
+            },
+            {
+                question: "Which command is used to move or rename a file?",
+                options: ["cp", "mv", "rm", "touch"],
+                answer: "mv"
+            },
+            {
+                question: "What does the rm command do?",
+                options: ["Removes a directory", "Removes a file", "Renames a file", "Reads a file"],
+                answer: "Removes a file"
+            },
+            {
+                question: "How do you create an empty file from the command line?",
+                options: ["mkdir", "nano", "touch", "cat"],
+                answer: "touch"
+            },
+            {
+                question: "What does chmod +x script.sh do?",
+                options: ["Deletes the script", "Makes the script executable", "Compiles the script", "Moves the script"],
+                answer: "Makes the script executable"
+            },
+            {
+                question: "Which command shows the contents of a file?",
+                options: ["ls", "cat", "mv", "chmod"],
+                answer: "cat"
+            },
+            {
+                question: "What does the man command do?",
+                options: ["Displays the manual for a command", "Manages user accounts", "Shows system processes", "Opens a text editor"],
+                answer: "Displays the manual for a command"
+            },
+            {
+                question: "How do you search for a specific string in a file?",
+                options: ["find", "grep", "locate", "search"],
+                answer: "grep"
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const q = quizData[currentQuestion];
+            document.getElementById("question").innerText = q.question;
+            const optionsList = document.getElementById("options");
+            optionsList.innerHTML = "";
+            q.options.forEach(option => {
+                const li = document.createElement("li");
+                li.innerHTML = `<label><input type="radio" name="option" value="${option}"> ${option}</label>`;
+                optionsList.appendChild(li);
+            });
+        }
+
+        function nextQuestion() {
+            const selected = document.querySelector('input[name="option"]:checked');
+            if (!selected) return;
+
+            if (selected.value === quizData[currentQuestion].answer) {
+                score++;
+            }
+
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                document.getElementById("quiz").innerHTML = `<div class="result">You scored ${score} out of ${quizData.length}</div>`;
+            }
+        }
+
+        loadQuestion();
+    </script>
+</body>
+</html>
