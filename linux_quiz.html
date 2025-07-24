@@ -1,120 +1,128 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Linux Command Knowledge Quiz</title>
+    <title>Linux Command Quiz</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 40px; }
-        h1 { color: #2c3e50; }
-        .question { margin-bottom: 20px; }
-        .question h3 { margin-bottom: 5px; }
-        .options label { display: block; margin-left: 20px; }
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .question { display: none; margin-bottom: 20px; }
+        .question.active { display: block; }
+        .result { margin-top: 20px; }
+        .correct { color: green; }
+        .incorrect { color: red; }
     </style>
 </head>
 <body>
-    <h1>Linux Command Knowledge Quiz</h1>
-
-    <form>
-        <div class="question">
-            <h3>1. Which command is used to list files in a directory?</h3>
-            <div class="options">
-                <label><input type="radio" name="q1"> ls</label>
-                <label><input type="radio" name="q1"> cd</label>
-                <label><input type="radio" name="q1"> mkdir</label>
-                <label><input type="radio" name="q1"> rm</label>
-            </div>
-        </div>
-
-        <div class="question">
-            <h3>2. What does the 'pwd' command do?</h3>
-            <div class="options">
-                <label><input type="radio" name="q2"> Prints the working directory</label>
-                <label><input type="radio" name="q2"> Changes the directory</label>
-                <label><input type="radio" name="q2"> Lists files</label>
-                <label><input type="radio" name="q2"> Deletes a file</label>
-            </div>
-        </div>
-
-        <div class="question">
-            <h3>3. Which command is used to change file permissions?</h3>
-            <div class="options">
-                <label><input type="radio" name="q3"> chmod</label>
-                <label><input type="radio" name="q3"> chown</label>
-                <label><input type="radio" name="q3"> ls</label>
-                <label><input type="radio" name="q3"> mv</label>
-            </div>
-        </div>
-
-        <div class="question">
-            <h3>4. What does the 'grep' command do?</h3>
-            <div class="options">
-                <label><input type="radio" name="q4"> Searches for patterns in files</label>
-                <label><input type="radio" name="q4"> Changes file ownership</label>
-                <label><input type="radio" name="q4"> Lists running processes</label>
-                <label><input type="radio" name="q4"> Creates a new directory</label>
-            </div>
-        </div>
-
-        <div class="question">
-            <h3>5. Which command is used to display the contents of a file?</h3>
-            <div class="options">
-                <label><input type="radio" name="q5"> cat</label>
-                <label><input type="radio" name="q5"> touch</label>
-                <label><input type="radio" name="q5"> mkdir</label>
-                <label><input type="radio" name="q5"> rm</label>
-            </div>
-        </div>
-
-        <div class="question">
-            <h3>6. What does the 'grep -i error logfile.txt' command do?</h3>
-            <div class="options">
-                <label><input type="radio" name="q6"> Searches for 'error' in logfile.txt, case-insensitive</label>
-                <label><input type="radio" name="q6"> Ignores lines with 'error' in logfile.txt</label>
-                <label><input type="radio" name="q6"> Deletes lines with 'error' in logfile.txt</label>
-                <label><input type="radio" name="q6"> Replaces 'error' with 'ERROR' in logfile.txt</label>
-            </div>
-        </div>
-
-        <div class="question">
-            <h3>7. Which command is used to move or rename a file?</h3>
-            <div class="options">
-                <label><input type="radio" name="q7"> mv</label>
-                <label><input type="radio" name="q7"> cp</label>
-                <label><input type="radio" name="q7"> rm</label>
-                <label><input type="radio" name="q7"> touch</label>
-            </div>
-        </div>
-
-        <div class="question">
-            <h3>8. What does the 'top' command do?</h3>
-            <div class="options">
-                <label><input type="radio" name="q8"> Displays real-time system processes</label>
-                <label><input type="radio" name="q8"> Opens a text editor</label>
-                <label><input type="radio" name="q8"> Lists files in a directory</label>
-                <label><input type="radio" name="q8"> Shuts down the system</label>
-            </div>
-        </div>
-
-        <div class="question">
-            <h3>9. Which command is used to copy files?</h3>
-            <div class="options">
-                <label><input type="radio" name="q9"> cp</label>
-                <label><input type="radio" name="q9"> mv</label>
-                <label><input type="radio" name="q9"> rm</label>
-                <label><input type="radio" name="q9"> ls</label>
-            </div>
-        </div>
-
-        <div class="question">
-            <h3>10. What does the 'df -h' command show?</h3>
-            <div class="options">
-                <label><input type="radio" name="q10"> Disk space usage in human-readable format</label>
-                <label><input type="radio" name="q10"> Deletes files in home directory</label>
-                <label><input type="radio" name="q10"> Displays hidden files</label>
-                <label><input type="radio" name="q10"> Formats the disk</label>
-            </div>
-        </div>
+    <h1>Linux Command Quiz</h1>
+    <form id="quizForm">
+        <!-- Questions will be inserted here -->
     </form>
+    <button onclick="nextQuestion()">Next</button>
+    <div id="result" class="result"></div>
+
+    <script>
+        const questions = [
+            {
+                question: "Which command is used to list files in a directory?",
+                options: ["ls", "cd", "mkdir", "rm"],
+                answer: 0
+            },
+            {
+                question: "What does the 'pwd' command do?",
+                options: ["Prints working directory", "Deletes a file", "Changes directory", "Lists processes"],
+                answer: 0
+            },
+            {
+                question: "Which command is used to change file permissions?",
+                options: ["chmod", "chown", "ls", "touch"],
+                answer: 0
+            },
+            {
+                question: "What is the purpose of the 'mkdir' command?",
+                options: ["Make a new directory", "Move a file", "Remove a file", "List files"],
+                answer: 0
+            },
+            {
+                question: "Which command is used to display the contents of a file?",
+                options: ["cat", "ls", "rm", "mv"],
+                answer: 0
+            },
+            {
+                question: "Which command is used to search for a pattern in a file (easy)?",
+                options: ["find", "search", "grep", "scan"],
+                answer: 2
+            },
+            {
+                question: "What does 'grep -i error logfile.txt' do?",
+                options: ["Searches for 'error' case-insensitively in logfile.txt", "Deletes 'error' from logfile.txt", "Lists all lines in logfile.txt", "Counts lines in logfile.txt"],
+                answer: 0
+            },
+            {
+                question: "Which command is used to move files?",
+                options: ["mv", "cp", "rm", "ls"],
+                answer: 0
+            },
+            {
+                question: "What does 'grep -v warning logfile.txt' do?",
+                options: ["Displays lines that do not contain 'warning'", "Displays only lines with 'warning'", "Deletes lines with 'warning'", "Counts 'warning' lines"],
+                answer: 0
+            },
+            {
+                question: "Which command is used to display disk usage?",
+                options: ["df", "du", "top", "free"],
+                answer: 1
+            }
+        ];
+
+        let currentQuestion = 0;
+
+        function loadQuestion(index) {
+            const form = document.getElementById("quizForm");
+            form.innerHTML = "";
+            const q = questions[index];
+            const div = document.createElement("div");
+            div.className = "question active";
+            div.innerHTML = `<p><strong>Question ${index + 1}:</strong> ${q.question}</p>`;
+            q.options.forEach((opt, i) => {
+                div.innerHTML += `<label><input type="radio" name="q${index}" value="${i}"> ${opt}</label><br>`;
+            });
+            form.appendChild(div);
+        }
+
+        function nextQuestion() {
+            const selected = document.querySelector(`input[name="q${currentQuestion}"]:checked`);
+            if (!selected) {
+                alert("Please select an answer.");
+                return;
+            }
+            questions[currentQuestion].selected = parseInt(selected.value);
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                loadQuestion(currentQuestion);
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            const form = document.getElementById("quizForm");
+            form.innerHTML = "";
+            let score = 0;
+            questions.forEach((q, i) => {
+                const div = document.createElement("div");
+                const isCorrect = q.selected === q.answer;
+                if (isCorrect) score++;
+                div.innerHTML = `<p><strong>Question ${i + 1}:</strong> ${q.question}</p>`;
+                q.options.forEach((opt, j) => {
+                    const color = j === q.answer ? "correct" : (j === q.selected ? "incorrect" : "");
+                    div.innerHTML += `<p class="${color}">${opt}</p>`;
+                });
+                form.appendChild(div);
+            });
+            document.getElementById("result").innerHTML = `<h2>Your Score: ${score} / ${questions.length}</h2>`;
+        }
+
+        loadQuestion(currentQuestion);
+    </script>
 </body>
 </html>
