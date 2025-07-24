@@ -3,113 +3,118 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Linux Command Line Basics Quiz</title>
+    <title>Linux Command Knowledge Quiz</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f4; }
-        .quiz-container { background: white; padding: 20px; border-radius: 8px; max-width: 600px; margin: auto; }
-        .question { font-size: 18px; margin-bottom: 10px; }
-        .options { list-style-type: none; padding: 0; }
-        .options li { margin-bottom: 8px; }
-        button { padding: 10px 20px; font-size: 16px; margin-top: 20px; }
-        .result { font-size: 20px; font-weight: bold; margin-top: 20px; }
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        h1 { color: #2c3e50; }
+        .question { margin-bottom: 20px; }
+        .question h3 { margin-bottom: 5px; }
+        .options label { display: block; margin-left: 20px; }
     </style>
 </head>
 <body>
-    <div class="quiz-container">
-        <div id="quiz">
-            <div class="question" id="question"></div>
-            <ul class="options" id="options"></ul>
-            <button onclick="nextQuestion()">Next</button>
-            <div class="result" id="result"></div>
+    <h1>Linux Command Knowledge Quiz</h1>
+
+    <form>
+        <div class="question">
+            <h3>1. Which command is used to list files in a directory?</h3>
+            <div class="options">
+                <label><input type="radio" name="q1"> ls</label>
+                <label><input type="radio" name="q1"> cd</label>
+                <label><input type="radio" name="q1"> mkdir</label>
+                <label><input type="radio" name="q1"> rm</label>
+            </div>
         </div>
-    </div>
 
-    <script>
-        const quizData = [
-            {
-                question: "Which command is used to list files and directories in Linux?",
-                options: ["pwd", "ls", "cd", "mv"],
-                answer: "ls"
-            },
-            {
-                question: "What does the cd command do?",
-                options: ["Creates a new directory", "Deletes a file", "Changes the current directory", "Lists all files"],
-                answer: "Changes the current directory"
-            },
-            {
-                question: "How do you display the current working directory?",
-                options: ["dir", "whereami", "pwd", "ls -d"],
-                answer: "pwd"
-            },
-            {
-                question: "Which command is used to move or rename a file?",
-                options: ["cp", "mv", "rm", "touch"],
-                answer: "mv"
-            },
-            {
-                question: "What does the rm command do?",
-                options: ["Removes a directory", "Removes a file", "Renames a file", "Reads a file"],
-                answer: "Removes a file"
-            },
-            {
-                question: "How do you create an empty file from the command line?",
-                options: ["mkdir", "nano", "touch", "cat"],
-                answer: "touch"
-            },
-            {
-                question: "What does chmod +x script.sh do?",
-                options: ["Deletes the script", "Makes the script executable", "Compiles the script", "Moves the script"],
-                answer: "Makes the script executable"
-            },
-            {
-                question: "Which command shows the contents of a file?",
-                options: ["ls", "cat", "mv", "chmod"],
-                answer: "cat"
-            },
-            {
-                question: "What does the man command do?",
-                options: ["Displays the manual for a command", "Manages user accounts", "Shows system processes", "Opens a text editor"],
-                answer: "Displays the manual for a command"
-            },
-            {
-                question: "How do you search for a specific string in a file?",
-                options: ["find", "grep", "locate", "search"],
-                answer: "grep"
-            }
-        ];
+        <div class="question">
+            <h3>2. What does the 'pwd' command do?</h3>
+            <div class="options">
+                <label><input type="radio" name="q2"> Prints the working directory</label>
+                <label><input type="radio" name="q2"> Changes the directory</label>
+                <label><input type="radio" name="q2"> Lists files</label>
+                <label><input type="radio" name="q2"> Deletes a file</label>
+            </div>
+        </div>
 
-        let currentQuestion = 0;
-        let score = 0;
+        <div class="question">
+            <h3>3. Which command is used to change file permissions?</h3>
+            <div class="options">
+                <label><input type="radio" name="q3"> chmod</label>
+                <label><input type="radio" name="q3"> chown</label>
+                <label><input type="radio" name="q3"> ls</label>
+                <label><input type="radio" name="q3"> mv</label>
+            </div>
+        </div>
 
-        function loadQuestion() {
-            const q = quizData[currentQuestion];
-            document.getElementById("question").innerText = q.question;
-            const optionsList = document.getElementById("options");
-            optionsList.innerHTML = "";
-            q.options.forEach(option => {
-                const li = document.createElement("li");
-                li.innerHTML = `<label><input type="radio" name="option" value="${option}"> ${option}</label>`;
-                optionsList.appendChild(li);
-            });
-        }
+        <div class="question">
+            <h3>4. What does the 'grep' command do?</h3>
+            <div class="options">
+                <label><input type="radio" name="q4"> Searches for patterns in files</label>
+                <label><input type="radio" name="q4"> Changes file ownership</label>
+                <label><input type="radio" name="q4"> Lists running processes</label>
+                <label><input type="radio" name="q4"> Creates a new directory</label>
+            </div>
+        </div>
 
-        function nextQuestion() {
-            const selected = document.querySelector('input[name="option"]:checked');
-            if (!selected) return;
+        <div class="question">
+            <h3>5. Which command is used to display the contents of a file?</h3>
+            <div class="options">
+                <label><input type="radio" name="q5"> cat</label>
+                <label><input type="radio" name="q5"> touch</label>
+                <label><input type="radio" name="q5"> mkdir</label>
+                <label><input type="radio" name="q5"> rm</label>
+            </div>
+        </div>
 
-            if (selected.value === quizData[currentQuestion].answer) {
-                score++;
-            }
+        <div class="question">
+            <h3>6. What does the 'grep -i error logfile.txt' command do?</h3>
+            <div class="options">
+                <label><input type="radio" name="q6"> Searches for 'error' in logfile.txt, case-insensitive</label>
+                <label><input type="radio" name="q6"> Ignores lines with 'error' in logfile.txt</label>
+                <label><input type="radio" name="q6"> Deletes lines with 'error' in logfile.txt</label>
+                <label><input type="radio" name="q6"> Replaces 'error' with 'ERROR' in logfile.txt</label>
+            </div>
+        </div>
 
-            currentQuestion++;
-            if (currentQuestion < quizData.length) {
-                loadQuestion();
-            } else {
-                document.getElementById("quiz").innerHTML = `<div class="result">You scored ${score} out of ${quizData.length}</div>`;
-            }
-        }
+        <div class="question">
+            <h3>7. Which command is used to move or rename a file?</h3>
+            <div class="options">
+                <label><input type="radio" name="q7"> mv</label>
+                <label><input type="radio" name="q7"> cp</label>
+                <label><input type="radio" name="q7"> rm</label>
+                <label><input type="radio" name="q7"> touch</label>
+            </div>
+        </div>
 
-        loadQuestion();
-    </script>
+        <div class="question">
+            <h3>8. What does the 'top' command do?</h3>
+            <div class="options">
+                <label><input type="radio" name="q8"> Displays real-time system processes</label>
+                <label><input type="radio" name="q8"> Opens a text editor</label>
+                <label><input type="radio" name="q8"> Lists files in a directory</label>
+                <label><input type="radio" name="q8"> Shuts down the system</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <h3>9. Which command is used to copy files?</h3>
+            <div class="options">
+                <label><input type="radio" name="q9"> cp</label>
+                <label><input type="radio" name="q9"> mv</label>
+                <label><input type="radio" name="q9"> rm</label>
+                <label><input type="radio" name="q9"> ls</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <h3>10. What does the 'df -h' command show?</h3>
+            <div class="options">
+                <label><input type="radio" name="q10"> Disk space usage in human-readable format</label>
+                <label><input type="radio" name="q10"> Deletes files in home directory</label>
+                <label><input type="radio" name="q10"> Displays hidden files</label>
+                <label><input type="radio" name="q10"> Formats the disk</label>
+            </div>
+        </div>
+    </form>
 </body>
 </html>
